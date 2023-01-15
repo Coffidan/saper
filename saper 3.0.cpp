@@ -1,4 +1,4 @@
-﻿#include <chrono>
+#include <chrono>
 #include <random>
 #include <SFML/Graphics.hpp>
 
@@ -18,7 +18,7 @@ int main()
 	unsigned lag = 0;
 
 	
-	unsigned char Alexander_state = 0;
+	unsigned char Daniil_state = 0;
 
 	
 	std::chrono::time_point<std::chrono::steady_clock> previous_time;
@@ -30,16 +30,16 @@ int main()
 	
 	window.setView(sf::View(sf::FloatRect(0, 0, CELL_SIZE * COLUMNS, FONT_HEIGHT + CELL_SIZE * ROWS)));
 
-	sf::Sprite Alexander;
+	sf::Sprite Daniil;
 
 
-	sf::Texture Alexander_texture;
+	sf::Texture Daniil_texture;
 	
-	Alexander_texture.loadFromFile("texture/Daniil.png");
+	Daniil_texture.loadFromFile("texture/Daniil.png");
 
 
-	Alexander.setPosition(static_cast<float>(CELL_SIZE * COLUMNS - Alexander_texture.getSize().y), CELL_SIZE * ROWS);
-	Alexander.setTexture(Alexander_texture);
+	Daniil.setPosition(static_cast<float>(CELL_SIZE * COLUMNS - Daniil_texture.getSize().y), CELL_SIZE * ROWS);
+	Daniil.setTexture(Daniil_texture);
 
 
 	Field field;
@@ -118,7 +118,7 @@ int main()
 			if (1 == sf::Mouse::isButtonPressed(sf::Mouse::Left) || 1 == sf::Mouse::isButtonPressed(sf::Mouse::Right))
 			{
 				
-				Alexander_state = 1;
+				Daniil_state = 1;
 
 				
 				field.set_mouse_state(2, mouse_cell_x, mouse_cell_y);
@@ -127,7 +127,7 @@ int main()
 			else
 			{
 				
-				Alexander_state = 0;
+				Daniil_state = 0;
 
 				field.set_mouse_state(1, mouse_cell_x, mouse_cell_y);
 			}
@@ -136,13 +136,13 @@ int main()
 			if (-1 == field.get_game_over())
 			{
 				
-				Alexander_state = 2;
+				Daniil_state = 2;
 			}
 			
 			else if (1 == field.get_game_over())
 			{
 				
-				Alexander_state = 3;
+				Daniil_state = 3;
 			}
 
 			
@@ -169,10 +169,10 @@ int main()
 				draw_text(0, 0, CELL_SIZE * ROWS, "Mines:" + std::to_string(MINES - field.get_flags()), window);
 
 			
-				Alexander.setTextureRect(sf::IntRect(Alexander_state * Alexander_texture.getSize().y, 0, Alexander_texture.getSize().y, Alexander_texture.getSize().y));
+				Daniil.setTextureRect(sf::IntRect(Daniil_state * Daniil_texture.getSize().y, 0, Daniil_texture.getSize().y, Daniil_texture.getSize().y));
 
 				
-				window.draw(Alexander);
+				window.draw(Daniil);
 				window.display();
 			}
 		}
